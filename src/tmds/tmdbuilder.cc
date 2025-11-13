@@ -69,8 +69,10 @@ namespace apfel
     const Operator O1qgpdf{g, C1qgpdf{}, IntEps};
     const Operator O1gqpdf{g, C1gqpdf{}, IntEps};
     const Operator O1ggpdf{g, C1ggpdf{}, IntEps};
+//     const Operator O1ggpdf{g, C1ggpdf_onia("1S08"), IntEps};
     for (int nf = nfi; nf <= nff; nf++)
       {
+//         std::cout << "filling operators for NLO matching functions"<< std::endl;
         std::map<int, Operator> OM;
         OM.insert({EvolutionBasisQCD::PNSP, O1nspdf});
         OM.insert({EvolutionBasisQCD::PNSM, O1nspdf});
@@ -87,7 +89,8 @@ namespace apfel
     for (int nf = nfi; nf <= nff; nf++)
       {
         const Operator O11gmVq = gammaFq0() * Id;
-        const Operator O11gmVg = gammaFg0(nf) * Id;
+//         const Operator O11gmVg = gammaFg0(nf) * Id;
+        const Operator O11gmVg = gammaFg0_onium(nf, 8) * Id;
         const auto P0 = DglapObjpdf.at(nf).SplittingFunctions.at(0);
         std::map<int, Operator> OM;
         OM.insert({EvolutionBasisQCD::PNSP, O11gmVq - 2 * P0.at(0)});
@@ -141,6 +144,7 @@ namespace apfel
     for (int nf = nfi; nf <= nff; nf++)
       {
         const Operator O11gmVq = gammaFq0() * Id;
+//         const Operator O11gmVg = gammaFg0_onium(nf, 8) * Id;
         const Operator O11gmVg = gammaFg0(nf) * Id;
         const auto P0 = DglapObjff.at(nf).SplittingFunctions.at(0);
         std::map<int, Operator> OM;
@@ -235,7 +239,8 @@ namespace apfel
         const double b0   = beta0qcd(nf);
         const double gK0  = gammaK0();
         const double gFq0 = gammaFq0();
-        const double gFg0 = gammaFg0(nf);
+//         const double gFg0 = gammaFg0(nf);
+        const double gFg0 = gammaFg0_onium(nf, 8);
         const Operator O23gmVq = CF * gK0 * ( - gFq0 / 2 - 2 * b0 / 3 ) * Id;
         const Operator O23gmVg = CA * gK0 * ( - gFg0 / 2 - 2 * b0 / 3 ) * Id;
         const auto P0 = DglapObjpdf.at(nf).SplittingFunctions.at(0);
@@ -296,7 +301,8 @@ namespace apfel
       {
         const double b0   = beta0qcd(nf);
         const double gFq0 = gammaFq0();
-        const double gFg0 = gammaFg0(nf);
+//         const double gFg0 = gammaFg0(nf);
+        const double gFg0 = gammaFg0_onium(nf, 8);
         const Operator O21gmVq = ( gammaFq1(nf) + CF * KCS10(nf) ) * Id;
         const Operator O21gmVg = ( gammaFg1(nf) + CA * KCS10(nf) ) * Id;
         const auto P0 = DglapObjff.at(nf).SplittingFunctions.at(0);
@@ -319,7 +325,8 @@ namespace apfel
       {
         const double b0    = beta0qcd(nf);
         const double gv0q  = gammaFq0();
-        const double gv0g  = gammaFg0(nf);
+//         const double gv0g  = gammaFg0(nf);
+        const double gv0g  = gammaFg0_onium(nf, 8);
         const double gcp   = gammaK1(nf);
         const double factq = - ( gv0q + b0 ) / 2;
         const double factg = - ( gv0g + b0 ) / 2;
@@ -345,7 +352,8 @@ namespace apfel
         const double b0   = beta0qcd(nf);
         const double gK0  = gammaK0();
         const double gFq0 = gammaFq0();
-        const double gFg0 = gammaFg0(nf);
+//         const double gFg0 = gammaFg0(nf);
+        const double gFg0 = gammaFg0_onium(nf, 8);
         const Operator O23gmVq = CF * gK0 * ( - gFq0 / 2 - 2 * b0 / 3 ) * Id;
         const Operator O23gmVg = CA * gK0 * ( - gFg0 / 2 - 2 * b0 / 3 ) * Id;
         const auto P0 = DglapObjff.at(nf).SplittingFunctions.at(0);
@@ -439,7 +447,8 @@ namespace apfel
         obj.GammaFq.insert({2, gammaFq2(nf)});
 
         // GammaF gluon
-        obj.GammaFg.insert({0, gammaFg0(nf)});
+//         obj.GammaFg.insert({0, gammaFg0(nf)});
+        obj.GammaFg.insert({0, gammaFg0_onium(nf, 8)});
         obj.GammaFg.insert({1, gammaFg1(nf)});
         obj.GammaFg.insert({2, gammaFg2(nf)});
 
@@ -565,7 +574,8 @@ namespace apfel
     std::map<int, std::map<int, Operator>> C11pdf;
     for (int nf = nfi; nf <= nff; nf++)
       {
-        const Operator O11gmVg = gammaFg0(nf) * Id;
+//         const Operator O11gmVg = gammaFg0(nf) * Id;
+        const Operator O11gmVg = gammaFg0_onium(nf, 8) * Id;
         const auto P0 = DglapObjpdf.at(nf).SplittingFunctions.at(0);
         std::map<int, Operator> OM;
         for (int iOp = 0; iOp < 5; iOp++)
@@ -612,7 +622,8 @@ namespace apfel
     for (int nf = nfi; nf <= nff; nf++)
       {
         const double b0   = beta0qcd(nf);
-        const double gFg0 = gammaFg0(nf);
+//         const double gFg0 = gammaFg0(nf);
+        const double gFg0 = gammaFg0_onium(nf, 8);
         const Operator O21gmVg = ( gammaFg1(nf) + CA * KCS10(nf) ) * Id;
         const auto P0 = DglapObjpdf.at(nf).SplittingFunctions.at(0);
         const auto P1 = DglapObjpdf.at(nf).SplittingFunctions.at(1);
@@ -632,7 +643,8 @@ namespace apfel
         const double b0   = beta0qcd(nf);
         const double gK0  = gammaK0();
         const double gK1  = gammaK1(nf);
-        const double gFg0 = gammaFg0(nf);
+//         const double gFg0 = gammaFg0(nf);
+        const double gFg0 = gammaFg0_onium(nf, 8);
         const Operator O22gmVg = ( b0 * gFg0 + pow(gFg0, 2) / 2 - CA * gK1 / 2 ) * Id;
         const auto P0 = DglapObjpdf.at(nf).SplittingFunctions.at(0);
         const auto C1 = C10pdf.at(nf);
@@ -650,7 +662,8 @@ namespace apfel
       {
         const double b0   = beta0qcd(nf);
         const double gK0  = gammaK0();
-        const double gFg0 = gammaFg0(nf);
+// //         const double gFg0 = gammaFg0(nf);
+        const double gFg0 = gammaFg0_onium(nf, 8);
         const Operator O23gmVg = CA * gK0 * ( - gFg0 / 2 - 2 * b0 / 3 ) * Id;
         const auto P0 = DglapObjpdf.at(nf).SplittingFunctions.at(0);
         std::map<int, Operator> OM;
@@ -706,7 +719,8 @@ namespace apfel
         obj.GammaFq.insert({2, 0});
 
         // GammaF gluon
-        obj.GammaFg.insert({0, gammaFg0(nf)});
+//         obj.GammaFg.insert({0, gammaFg0(nf)});
+        obj.GammaFg.insert({0, gammaFg0_onium(nf, 8)});
         obj.GammaFg.insert({1, gammaFg1(nf)});
         obj.GammaFg.insert({2, gammaFg2(nf)});
 
@@ -838,7 +852,8 @@ namespace apfel
         obj.GammaFq.insert({2, gammaFq2(nf)});
 
         // GammaF gluon
-        obj.GammaFg.insert({0, gammaFg0(nf)});
+//         obj.GammaFg.insert({0, gammaFg0(nf)});
+        obj.GammaFg.insert({0, gammaFg0_onium(nf, 8)});
         obj.GammaFg.insert({1, gammaFg1(nf)});
         obj.GammaFg.insert({2, gammaFg2(nf)});
 
@@ -953,7 +968,8 @@ namespace apfel
     for (int nf = nfi; nf <= nff; nf++)
       {
         const Operator O11gmVq = gammaFq0() * Id;
-        const Operator O11gmVg = gammaFg0(nf) * Id;
+//         const Operator O11gmVg = gammaFg0(nf) * Id;
+        const Operator O11gmVg = gammaFg0_onium(nf, 8) * Id;
         const auto P0 = DglapObjpdf.at(nf).SplittingFunctions.at(0);
         std::map<int, Operator> OM;
         OM.insert({EvolutionBasisQCD::PNSP, O11gmVq - 2 * P0.at(0)});
@@ -1014,7 +1030,8 @@ namespace apfel
         obj.GammaFq.insert({2, gammaFq2(nf)});
 
         // GammaF gluon
-        obj.GammaFg.insert({0, gammaFg0(nf)});
+//         obj.GammaFg.insert({0, gammaFg0(nf)});
+        obj.GammaFg.insert({0, gammaFg0_onium(nf, 8)});
         obj.GammaFg.insert({1, gammaFg1(nf)});
         obj.GammaFg.insert({2, gammaFg2(nf)});
 

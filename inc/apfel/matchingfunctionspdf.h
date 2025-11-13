@@ -7,6 +7,7 @@
 #pragma once
 
 #include "apfel/expression.h"
+#include <string>
 
 namespace apfel
 {
@@ -88,7 +89,25 @@ namespace apfel
   {
   public:
     C1ggpdf();
-    double Local(double const&) const;
+    double Local(double const&) const;    
+  };
+  ///@}
+  
+  
+  /**
+   * @brief The O(&alpha;<SUB>s</SUB>) gluon-gluon matching function
+   * for PDFs (references: https://arxiv.org/pdf/1604.07869.pdf and
+   * https://arxiv.org/pdf/1706.01473.pdf).
+   */
+  class C1ggpdf_onia: public C1ggpdf
+  {
+  public:
+    C1ggpdf_onia();
+//     double Local_onia(double const&) const;
+    double Local_onia(std::string & oniumstate) const;
+//   protected:
+//     std::string _oniumstate;
+//     double _BQc;
   };
   ///@}
 

@@ -54,7 +54,22 @@ namespace apfel
   }
   double C1ggpdf::Local(double const&) const
   {
-    return - CA * zeta2;
+    return - CA * zeta2; //zeta2 = pi^2 / 6
+  }
+//   double C1ggpdf_onia(std::string const& oniumstate){
+    
+//     return - CA * zeta2 + BQc[oniumstate] / 2 ; //zeta2 = pi^2 / 6
+//   }
+  
+  //_________________________________________________________________________________
+  C1ggpdf_onia::C1ggpdf_onia(): C1ggpdf()
+//    Expression(),
+//    _oniumstate(oniumstate)
+  {
+  }
+  double C1ggpdf_onia::Local_onia(std::string & oniumstate) const
+  {    
+    return - CA * zeta2 + BQc.at(oniumstate) / 2 ; //zeta2 = pi^2 / 6
   }
 
   //_________________________________________________________________________________

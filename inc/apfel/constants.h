@@ -9,6 +9,9 @@
 #include <cmath>
 #include <vector>
 #include <array>
+#include <map>
+#include <string>
+#include <cstring>
 
 namespace apfel
 {
@@ -281,4 +284,56 @@ namespace apfel
   const std::vector<double> CKM2 = {Vud2, Vus2, Vub2, Vcd2, Vcs2, Vcb2, Vtd2, Vts2, Vtb2};
   ///@}
   ///@}
+  
+  /**
+   * @defgroup Onium Physical constants
+   * Collection of quarkonium masses and LDME values.
+   * @ingroup NumericalConstants
+   */
+  ///@{
+    /**
+   * @name Quarkonium mass
+   * @brief Mass of the quarkonia. To Do: choose PDG values or not
+   * http://pdg.lbl.gov/2018/reviews/rpp2018-rev-ckm-matrix.pdf.
+   */
+  ///@{
+  const std::map <std::string, double> Monium = {{"Jpsi", 3.0}, {"Upsilon", 9.5}, {"psi2S", 3.7}, {"Chic2", 3.556}, {"Chib2", 9.912}};
+  ///@}
+  ///@{
+    /**
+   * @name Branching mass
+   * @brief Mass of the quarkonia. To Do: choose PDG values or not
+   * http://pdg.lbl.gov/2018/reviews/rpp2018-rev-ckm-matrix.pdf.
+   */
+  ///@{
+  const std::map < std::string, std::map < std::string, double> > Br = {
+    {"Jpsi",{{"mumu", 5.93e-2}, {"ee", 5.94e-2}}},
+    {"Upsilon",{{"mumu", 2.48e-2}, {"ee", 2.39e-2}}},
+    {"Chic2",{{"Jpsi", 0.19}}},
+    {"Chib2",{{"Upsilon", 0.18}}}
+    };
+  ///@}
+    /**
+   * @name LDMEs
+   * @brief Quarkonia Long Distance Matrix Elements. 
+   * http://pdg.lbl.gov/2018/reviews/rpp2018-rev-ckm-matrix.pdf.
+   */
+  ///@{
+  const std::map < std::string, std::map < std::string, double> > LDME = {
+    {"SV", {{"1S08", 0.018}, {"3S18", 0.0013}, {"3P08", 0.0405}, {"3P28", 0.02025}}},
+    {"BK11", {{"1S08", 0.0304}, {"3S18", 0.00168}, {"3P08", -0.00908}, {"3P28", -0.0454}}},
+    {"C12", {{"1S08", 0.089}, {"3S18", 0.0030}, {"3P08", 0.0126}, {"3P28", 0.063}}},
+    {"SYY", {{"1S08", 0.1423}, {"3S18", -0.0093}, {"3P08", -0.039375}, {"3P28", -0.196875}, {"3P21", 0.018}, {"approx", 0.0197}}},
+    };
+  ///@}
+  /**
+   * @name BQc coefficients
+   * @brief: NLO Corrections for onium production.
+   * Taken from Nucl. Phys. B 514 (1998) 245-309, see Eqs. (127), (129)-(131)
+  */
+  ///@{
+  const std::map <std::string, double> BQc = {{"1S08", 3.16}, {"3P08", 3.76}, {"3P28", 2.8}, {"3P21", 4.07}};
+  ///@}
+  ///@}
+  
 }
