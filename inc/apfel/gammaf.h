@@ -6,6 +6,8 @@
 
 #pragma once
 
+// #include <string>
+
 namespace apfel
 {
   /**
@@ -26,6 +28,8 @@ namespace apfel
 
   /// Gluon &alpha;<SUB>s</SUB> term
   double gammaFg0(int const& nf);
+//   double gammaFg0_onium(int const& nf, std::string const& c_onium);
+  double gammaFg0_onium(int const& nf, int const& c_onium);
 
   /// Gluon &alpha;<SUB>s</SUB><SUP>2</SUP> term
   double gammaFg1(int const& nf);

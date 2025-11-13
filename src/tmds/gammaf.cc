@@ -39,7 +39,17 @@ namespace apfel
   {
     return - ( - 22 * CA / 3 + 8 * TR * nf / 3 );
   }
-
+  
+  //_________________________________________________________________________
+//   double gammaFg0_onium(int const& nf, std::string& c_onium)
+  double gammaFg0_onium(int const& nf, int const& c_onium)
+  {
+//     if (c_onium == "8") return - ( - 22 * CA / 3 + 8 * TR * nf / 3 ) - 1. / 4.;
+    if (c_onium == 8)  return - ( - 22 * CA / 3 + 8 * TR * nf / 3 ) - 1. / 4.;    
+    else return gammaFg0(nf);
+  }
+  
+  
   //_________________________________________________________________________
   double gammaFg1(int const& nf)
   {

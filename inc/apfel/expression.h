@@ -5,6 +5,7 @@
 //
 
 #pragma once
+#include <string>
 
 namespace apfel
 {
@@ -54,6 +55,13 @@ namespace apfel
      */
     virtual double Local(double const&) const { return 0; }
 
+//     /**
+//      * @brief Virtual local term.
+//      * @return The local term at x
+//      */
+    virtual double Local_onia(double const& ) const { return 0; }
+
+    
     /**
      * @brief Virtual local term for principal-valued integrals a la
      * ERBL with singularity at x = 1, i.e. corresponding to the
