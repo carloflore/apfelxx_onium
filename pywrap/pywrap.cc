@@ -122,7 +122,6 @@ PYBIND11_MODULE(apfelpy, m)
   _gammaF.def("gammaFq1", &apfel::gammaFq1, "nf"_a);
   _gammaF.def("gammaFq2", &apfel::gammaFq2, "nf"_a);
   _gammaF.def("gammaFg0", &apfel::gammaFg0, "nf"_a);
-  _gammaF.def("gammaFg0", &apfel::gammaFg0, "nf"_a);
   _gammaF.def("gammaFg0_onium", &apfel::gammaFg0_onium, "nf"_a, "c_onium"_a);
   _gammaF.def("gammaFg1", &apfel::gammaFg1, "nf"_a);
   _gammaF.def("gammaFg2", &apfel::gammaFg2, "nf"_a);
